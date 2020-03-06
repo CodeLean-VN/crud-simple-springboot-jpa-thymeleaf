@@ -12,27 +12,22 @@
 </head>
 <body>
 <div class="container">
-    <a th:href="@{/create}">Create new category</a>
-    <span class="text-success" th:text="${msg}"></span>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="item, state : ${list}">
-            <tr>
-                <td th:text="${state.count}"></td>
-                <td th:text="${item.name}"></td>
-                <td th:text="${item.description}"></td>
-            </tr>
-        </th:block>
-        </tbody>
-    </table>
+    <h1><a th:href="@{/category/create}">Insert new category</a></h1>
+    <form th:action="@{/category/create}" th:object="${category}" method="POST">
+
+        <div class="form-group">
+            <input type="text" th:field="*{name}"/>
+        </div>
+
+        <div class="form-group">
+            <input type="text" th:field="*{description}"/>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" />
+        </div>
+    </form>
+
 </div>
 
 </body>

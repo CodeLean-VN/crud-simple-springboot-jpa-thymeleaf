@@ -16,23 +16,23 @@ public class CategoryController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/list")
+    @GetMapping("/category/list")
     public String greeting(Model model) {
         model.addAttribute("list", categoryRepository.findAll());
-        return "/list";
+        return "/category/list";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/category/create")
     public String createUI(Model model) {
         model.addAttribute("category", new Category());
-        return "/create";
+        return "/category/create";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/category/create")
     public String storeEntity(@ModelAttribute("category") Category category, RedirectAttributes redirectAttributes) {
         categoryRepository.save(category);
         redirectAttributes.addAttribute("msg", "Save successfuly!!");
-        return "redirect:/list";
+        return "redirect:/category/list";
     }
 
 }
